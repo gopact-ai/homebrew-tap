@@ -1,0 +1,44 @@
+name: test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  required:
+    name: tap / required
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15-intel, macos-26, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@18fcb8e3e06b4247c676c506750dc95ea7226479
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Test formula renderer
+        run: ./scripts/test-render-formula.sh
+
+      - name: Audit formula
+        run: brew audit --strict --online gopact-ai/tap/ninea
+
+      - name: Install through public alias
+        run: brew install gopact-ai/tap/9a
+
+      - name: Test installed commands
+        run: brew test gopact-ai/tap/ninea

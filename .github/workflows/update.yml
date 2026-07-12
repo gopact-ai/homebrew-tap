@@ -1,0 +1,59 @@
+name: update NineA formula
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Render latest stable formula
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag=$(gh api repos/gopact-ai/9a/releases/latest --jq .tag_name)
+          version=${tag#v}
+          gh release download "$tag" \
+            --repo gopact-ai/9a \
+            --pattern checksums.txt \
+            --dir "$RUNNER_TEMP"
+          ./scripts/test-render-formula.sh
+          ./scripts/render-formula.sh \
+            "$version" "$RUNNER_TEMP/checksums.txt" > Formula/ninea.rb
+
+      - name: Create formula update pull request
+        id: update
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          branch: automation/ninea-release
+          delete-branch: true
+          commit-message: 'chore: update NineA formula'
+          title: 'chore: update NineA formula'
+          body: |
+            Automated update from the latest stable NineA GitHub release.
+
+            The formula is rendered from the release's published SHA-256 checksums.
+
+      - name: Run protected tap tests
+        if: steps.update.outputs.pull-request-operation == 'created' || steps.update.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run tests.yml --ref automation/ninea-release
+
+      - name: Enable merge after required checks
+        if: steps.update.outputs.pull-request-operation == 'created' || steps.update.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge --auto --squash "${{ steps.update.outputs.pull-request-number }}"
