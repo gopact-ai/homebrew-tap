@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  required:
-    name: tap / required
+  test:
+    name: tap / test (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -34,6 +34,9 @@ jobs:
       - name: Test formula renderer
         run: ./scripts/test-render-formula.sh
 
+      - name: Trust only the NineA formula
+        run: brew trust --formula gopact-ai/tap/ninea
+
       - name: Audit formula
         run: brew audit --strict --online gopact-ai/tap/ninea
 
@@ -42,3 +45,14 @@ jobs:
 
       - name: Test installed commands
         run: brew test gopact-ai/tap/ninea
+
+  required:
+    name: tap / required
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every platform test
+        env:
+          RESULT: ${{ needs.test.result }}
+        run: test "$RESULT" = success
