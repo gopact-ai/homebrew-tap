@@ -20,7 +20,7 @@ brew update
 brew upgrade gopact-ai/tap/ninea
 ```
 
-Formula updates are generated from NineA's published release checksums and
-tested on macOS and Linux before they merge.
+Formula updates are generated from NineA's published release checksums, checked
+daily for freshness, and tested on macOS and Linux before they merge.
 
 NineA and this tap are available under the [MIT License](LICENSE).
