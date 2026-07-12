@@ -1,26 +1,26 @@
 class Ninea < Formula
   desc "Expose MCP, A2A, and HTTP capabilities as filesystem-native skills"
   homepage "https://github.com/gopact-ai/9a"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/gopact-ai/9a/releases/download/v0.1.0/9a_0.1.0_darwin_arm64.tar.gz"
-      sha256 "91b3b060a414f027046a48c272a5f220b8c6a77e56910f3eae39af4324f0408e"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.2.0/9a_0.2.0_darwin_arm64.tar.gz"
+      sha256 "fd78a7cae5097775ce4f4f76d000ec395336a175d3ddf45487ede6ce7a2bff7d"
     else
-      url "https://github.com/gopact-ai/9a/releases/download/v0.1.0/9a_0.1.0_darwin_amd64.tar.gz"
-      sha256 "ece1fc4e7cd8608be01e7f8569de561bcf6caaa48f9092b86a8fb50d0a711ca8"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.2.0/9a_0.2.0_darwin_amd64.tar.gz"
+      sha256 "f4ff045c77e2f9712ec4e3aefe8f431625188482aef52b4d0215f56dd145f45c"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/gopact-ai/9a/releases/download/v0.1.0/9a_0.1.0_linux_arm64.tar.gz"
-      sha256 "742f6cf08a03d175d6a12fb1c6bb82b0dc0933198e923b55b5913ffcaa67a084"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.2.0/9a_0.2.0_linux_arm64.tar.gz"
+      sha256 "00ae9c1ed3f10f7b0b780a7f574175ddb6b32d414bf5599f2077c9d5d9d50b98"
     else
-      url "https://github.com/gopact-ai/9a/releases/download/v0.1.0/9a_0.1.0_linux_amd64.tar.gz"
-      sha256 "8feef59f3273ab3907155abaff23937c4c43f80a07dc93b2a5f087c61f4cae12"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.2.0/9a_0.2.0_linux_amd64.tar.gz"
+      sha256 "14d11791f179157d138cd151cfc09a3e8b7c8c810b76018f17eada42df32265f"
     end
   end
 
