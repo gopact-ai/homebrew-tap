@@ -40,8 +40,8 @@ jobs:
       - name: Audit formula
         run: brew audit --strict --online gopact-ai/tap/ninea
 
-      - name: Install through public alias
-        run: brew install gopact-ai/tap/9a
+      - name: Install formula
+        run: brew install gopact-ai/tap/ninea
 
       - name: Test installed commands
         run: brew test gopact-ai/tap/ninea
