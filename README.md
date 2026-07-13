@@ -10,8 +10,15 @@ tools, A2A agents, and HTTP APIs as filesystem-native Skills.
 brew install gopact-ai/tap/ninea
 ```
 
-The formula installs both the `9a` client and the `ninead` daemon. It supports
-macOS and Linux on x86-64 and ARM64.
+The formula installs one `9a` command. Normal commands start its local daemon
+automatically, so no shell configuration or separate daemon command is needed.
+It supports macOS and Linux on x86-64 and ARM64.
+
+To keep the daemon running independently of a terminal session:
+
+```sh
+brew services start ninea
+```
 
 ## Upgrade
 
