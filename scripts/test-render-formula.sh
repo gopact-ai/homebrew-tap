@@ -21,13 +21,20 @@ for expected in \
 	'sha256 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"' \
 	'https://github.com/gopact-ai/9a/releases/download/v1.2.3/9a_1.2.3_linux_arm64.tar.gz' \
 	'sha256 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"' \
-	'bin.install "9a", "ninead"'
+	'bin.install "9a", "ninead"' \
+	'assert_match "Workspace Commands:", shell_output("#{bin}/9a --help")' \
+	'assert_match "9a #{version}", shell_output("#{bin}/9a version")'
 do
 	grep -Fq "$expected" "$tmp/ninea.rb" || {
 		printf 'generated formula is missing: %s\n' "$expected" >&2
 		exit 1
 	}
 done
+
+if grep -Fq 'usage: 9a <command>' "$tmp/ninea.rb"; then
+	printf 'generated formula still tests the legacy CLI usage output\n' >&2
+	exit 1
+fi
 
 if "$root/scripts/render-formula.sh" invalid "$tmp/checksums.txt" >/dev/null 2>&1; then
 	printf 'invalid version accepted\n' >&2
