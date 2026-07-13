@@ -57,13 +57,18 @@ class Ninea < Formula
   end
 
   def install
-    bin.install "9a", "ninead"
+    bin.install "9a"
+  end
+
+  service do
+    run [opt_bin/"9a", "daemon"]
+    keep_alive true
   end
 
   test do
     assert_match "Workspace Commands:", shell_output("#{bin}/9a --help")
     assert_match "9a #{version}", shell_output("#{bin}/9a version")
-    assert_match "-socket string", shell_output("#{bin}/ninead -h 2>&1")
+    assert_match "--socket string", shell_output("#{bin}/9a daemon --help")
   end
 end
 EOF
