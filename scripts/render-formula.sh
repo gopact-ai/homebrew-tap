@@ -61,7 +61,8 @@ class Ninea < Formula
   end
 
   test do
-    assert_match "usage: 9a <command>", shell_output("#{bin}/9a 2>&1", 1)
+    assert_match "Workspace Commands:", shell_output("#{bin}/9a --help")
+    assert_match "9a #{version}", shell_output("#{bin}/9a version")
     assert_match "-socket string", shell_output("#{bin}/ninead -h 2>&1")
   end
 end
