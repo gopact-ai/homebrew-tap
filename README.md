@@ -17,7 +17,7 @@ It supports macOS and Linux on x86-64 and ARM64.
 To keep the daemon running independently of a terminal session:
 
 ```sh
-brew services start ninea
+brew services start gopact-ai/tap/ninea
 ```
 
 ## Upgrade
