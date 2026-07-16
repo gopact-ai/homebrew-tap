@@ -1,26 +1,26 @@
 class Ninea < Formula
-  desc "Expose MCP, A2A, and HTTP capabilities as filesystem-native skills"
+  desc "Local capability runtime for AI agents"
   homepage "https://github.com/gopact-ai/9a"
-  version "0.2.7"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/gopact-ai/9a/releases/download/v0.2.7/9a_0.2.7_darwin_arm64.tar.gz"
-      sha256 "317dfa783931fd740e91c3756c11afbd831564a64f28e831d552cf928ab7059e"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.3.0/9a_0.3.0_darwin_arm64.tar.gz"
+      sha256 "c2ee174b0bd55737f5de3f663966c50500d7bacdda4a57facc3d4ee932bf3bbb"
     else
-      url "https://github.com/gopact-ai/9a/releases/download/v0.2.7/9a_0.2.7_darwin_amd64.tar.gz"
-      sha256 "6062464b087684cd34b86fb76404fecdc7679baf8fc53863f936100784eace06"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.3.0/9a_0.3.0_darwin_amd64.tar.gz"
+      sha256 "c9c6278bfa836011cadaa0c0282e00088451a91bca268afd02779b91e5d17204"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/gopact-ai/9a/releases/download/v0.2.7/9a_0.2.7_linux_arm64.tar.gz"
-      sha256 "f9e7f330961d6f96adbd3f8dc2c2fdc6b6f346292125947d153728eb4f571045"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.3.0/9a_0.3.0_linux_arm64.tar.gz"
+      sha256 "5fd283493bc7b0e0cead5ff3af31bf53ad50e61cacf8f89a6e14368fb903086d"
     else
-      url "https://github.com/gopact-ai/9a/releases/download/v0.2.7/9a_0.2.7_linux_amd64.tar.gz"
-      sha256 "466d53006bf1473513bb3e96e79d20151d4a7f010238f2fddbdc36913e91e253"
+      url "https://github.com/gopact-ai/9a/releases/download/v0.3.0/9a_0.3.0_linux_amd64.tar.gz"
+      sha256 "e73a25a90a951f42880ed420cb3c9d30671b816cc7a85a9d820c5157a30e17be"
     end
   end
 
@@ -34,7 +34,7 @@ class Ninea < Formula
   end
 
   test do
-    assert_match "Workspace Commands:", shell_output("#{bin}/9a --help")
+    assert_match "Usage:", shell_output("#{bin}/9a --help")
     assert_match "9a #{version}", shell_output("#{bin}/9a version")
     assert_match "--socket string", shell_output("#{bin}/9a daemon --help")
   end
