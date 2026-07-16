@@ -16,6 +16,7 @@ EOF
 
 for expected in \
 	'class Ninea < Formula' \
+	'desc "Local capability runtime for AI agents"' \
 	'version "1.2.3"' \
 	'https://github.com/gopact-ai/9a/releases/download/v1.2.3/9a_1.2.3_darwin_amd64.tar.gz' \
 	'sha256 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"' \
@@ -24,7 +25,7 @@ for expected in \
 	'bin.install "9a"' \
 	'run [opt_bin/"9a", "daemon"]' \
 	'keep_alive true' \
-	'assert_match "Workspace Commands:", shell_output("#{bin}/9a --help")' \
+	'assert_match "Usage:", shell_output("#{bin}/9a --help")' \
 	'assert_match "9a #{version}", shell_output("#{bin}/9a version")' \
 	'assert_match "--socket string", shell_output("#{bin}/9a daemon --help")'
 do
@@ -41,6 +42,11 @@ fi
 
 if grep -Fq 'usage: 9a <command>' "$tmp/ninea.rb"; then
 	printf 'generated formula still tests the legacy CLI usage output\n' >&2
+	exit 1
+fi
+
+if grep -Fq 'Workspace Commands:' "$tmp/ninea.rb"; then
+	printf 'generated formula still tests the retired command grouping\n' >&2
 	exit 1
 fi
 

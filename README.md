@@ -1,8 +1,8 @@
 # Homebrew Tap for NineA
 
 This is the official Homebrew tap for
-[NineA](https://github.com/gopact-ai/9a), the capability layer that exposes MCP
-tools, A2A agents, and HTTP APIs as filesystem-native Skills.
+[NineA](https://github.com/gopact-ai/9a), a local capability runtime that lets
+AI agents connect, search, and run HTTP APIs, MCP tools, and A2A agents.
 
 ## Install
 

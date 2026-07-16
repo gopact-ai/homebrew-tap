@@ -31,7 +31,7 @@ linux_arm64=$(checksum linux arm64)
 
 cat <<EOF
 class Ninea < Formula
-  desc "Expose MCP, A2A, and HTTP capabilities as filesystem-native skills"
+  desc "Local capability runtime for AI agents"
   homepage "https://github.com/gopact-ai/9a"
   version "$version"
   license "MIT"
@@ -66,7 +66,7 @@ class Ninea < Formula
   end
 
   test do
-    assert_match "Workspace Commands:", shell_output("#{bin}/9a --help")
+    assert_match "Usage:", shell_output("#{bin}/9a --help")
     assert_match "9a #{version}", shell_output("#{bin}/9a version")
     assert_match "--socket string", shell_output("#{bin}/9a daemon --help")
   end
