@@ -1,7 +1,6 @@
 class Ninea < Formula
   desc "Local capability runtime for AI agents"
   homepage "https://github.com/gopact-ai/9a"
-  version "0.3.0"
   license "MIT"
 
   on_macos do

@@ -33,7 +33,6 @@ cat <<EOF
 class Ninea < Formula
   desc "Local capability runtime for AI agents"
   homepage "https://github.com/gopact-ai/9a"
-  version "$version"
   license "MIT"
 
   on_macos do
