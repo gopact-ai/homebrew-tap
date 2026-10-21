@@ -33,7 +33,6 @@ cat <<EOF
 class Steve < Formula
   desc "Self-hosted delegation, follow-up and records for your coding agents"
   homepage "https://github.com/gopact-ai/steve"
-  version "$version"
   license "Apache-2.0"
 
   on_macos do

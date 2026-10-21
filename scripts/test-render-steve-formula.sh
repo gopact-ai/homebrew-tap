@@ -16,7 +16,6 @@ EOF
 
 for expected in \
 	'class Steve < Formula' \
-	'version "1.2.3"' \
 	'https://github.com/gopact-ai/steve/releases/download/v1.2.3/steve_1.2.3_darwin_arm64.tar.gz' \
 	'sha256 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"' \
 	'https://github.com/gopact-ai/steve/releases/download/v1.2.3/steve_1.2.3_linux_amd64.tar.gz' \
