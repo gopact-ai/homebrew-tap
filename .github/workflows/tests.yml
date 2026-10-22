@@ -31,8 +31,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Test formula renderer
-        run: ./scripts/test-render-formula.sh
+      - name: Test formula renderers
+        run: |
+          ./scripts/test-render-formula.sh
+          ./scripts/test-render-steve-formula.sh
 
       - name: Trust only the NineA formula
         run: brew trust --formula gopact-ai/tap/ninea
@@ -45,6 +47,14 @@ jobs:
 
       - name: Test installed commands
         run: brew test gopact-ai/tap/ninea
+
+      - name: Steve formula
+        if: hashFiles('Formula/steve.rb') != ''
+        run: |
+          brew trust --formula gopact-ai/tap/steve
+          brew audit --strict --online gopact-ai/tap/steve
+          brew install gopact-ai/tap/steve
+          brew test gopact-ai/tap/steve
 
   required:
     name: tap / required

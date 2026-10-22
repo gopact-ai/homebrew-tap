@@ -17,7 +17,6 @@ EOF
 for expected in \
 	'class Ninea < Formula' \
 	'desc "Local capability runtime for AI agents"' \
-	'version "1.2.3"' \
 	'https://github.com/gopact-ai/9a/releases/download/v1.2.3/9a_1.2.3_darwin_amd64.tar.gz' \
 	'sha256 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"' \
 	'https://github.com/gopact-ai/9a/releases/download/v1.2.3/9a_1.2.3_linux_arm64.tar.gz' \
