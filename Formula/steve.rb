@@ -5,21 +5,21 @@ class Steve < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/gopact-ai/steve/releases/download/v0.2.0/steve_0.2.0_darwin_arm64.tar.gz"
-      sha256 "4771348894d97c2eabc6e1bc1a66bf119fbc530fba38e785405af304b262e227"
+      url "https://github.com/gopact-ai/steve/releases/download/v0.2.1/steve_0.2.1_darwin_arm64.tar.gz"
+      sha256 "d23907ced212a5187d5423881e44f367f4abe49c5f82f0a37ceb41635f9b78c4"
     else
-      url "https://github.com/gopact-ai/steve/releases/download/v0.2.0/steve_0.2.0_darwin_amd64.tar.gz"
-      sha256 "6f71ea3d4f7f979ccefc25445d5d882d0b8ba094b0e35d025abf9c9a105fcdad"
+      url "https://github.com/gopact-ai/steve/releases/download/v0.2.1/steve_0.2.1_darwin_amd64.tar.gz"
+      sha256 "141471725be1aa950df57ef00d69f1ec939370798b662ec5c7b19ec91d2e8741"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/gopact-ai/steve/releases/download/v0.2.0/steve_0.2.0_linux_arm64.tar.gz"
-      sha256 "79a0bb59ab3658d54e91fe226b954f309ca1604033c3a416d75b777d93a73d83"
+      url "https://github.com/gopact-ai/steve/releases/download/v0.2.1/steve_0.2.1_linux_arm64.tar.gz"
+      sha256 "993d10f49dd7578a9a4665b18f0a895aa4d3069485bbe503c50852356b404923"
     else
-      url "https://github.com/gopact-ai/steve/releases/download/v0.2.0/steve_0.2.0_linux_amd64.tar.gz"
-      sha256 "69709e4624a47c37c57f6e0e3d52127806d1eb20fbecb40ff3db9ff0f9988fd2"
+      url "https://github.com/gopact-ai/steve/releases/download/v0.2.1/steve_0.2.1_linux_amd64.tar.gz"
+      sha256 "afc6ccb458a27456652cc0ccc6d6095888ad8095ab6fd7fb616e397bf24acc1f"
     end
   end
 
